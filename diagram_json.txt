@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "author": "Shiv",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-esp32-devkit-v1", "id": "esp", "top": -158.5, "left": -81.8, "attrs": {} },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -172.5, "left": -207, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -128.4,
+      "left": 109.4,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "board-ssd1306",
+      "id": "oled1",
+      "top": 79.94,
+      "left": -220.57,
+      "attrs": { "i2cAddress": "0x3c" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX0", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX0", "$serialMonitor:TX", "", [] ],
+    [ "esp:VIN", "dht1:VCC", "red", [ "h0" ] ],
+    [ "esp:VIN", "oled1:VCC", "red", [ "h0" ] ],
+    [ "oled1:GND", "esp:GND.2", "black", [ "v0" ] ],
+    [ "esp:GND.2", "dht1:GND", "black", [ "h0" ] ],
+    [ "dht1:SDA", "esp:D13", "green", [ "v0" ] ],
+    [ "oled1:SCL", "esp:D4", "purple", [ "v-28.8", "h249.9", "v-96.1" ] ],
+    [ "esp:D5", "oled1:SDA", "blue", [ "h86.1", "v134.4", "h-259.27" ] ],
+    [ "led1:C", "esp:GND.1", "black", [ "v0" ] ],
+    [ "led1:A", "esp:D2", "red", [ "v0" ] ]
+  ],
+  "dependencies": {}
+}
